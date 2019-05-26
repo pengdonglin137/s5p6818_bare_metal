@@ -40,13 +40,14 @@ ARCH			:=	armv8-a+crc
 CPU				:=	cortex-a53
 
 # build environment
+CROSS_COMPILE := aarch64-linux-gnu-
 
 CC				=	$(CROSS_COMPILE)gcc
 LD 				=	$(CROSS_COMPILE)ld
 OBJCOPY			=	$(CROSS_COMPILE)objcopy
 
 MKDIR			=	mkdir
-RM				=	rm
+RM			=	rm -rf
 
 BUILD			=	tools/build
 LOAD			=	tools/load
@@ -95,7 +96,7 @@ build: $(target-dir)/$(target-name).elf
 	@echo " [IMG]  $(target-dir)/$(target-name)_nonsih.img"
 	@$(OBJCOPY) -O binary $(target-dir)/$(target-name).elf $(target-dir)/$(target-name)_nonsih.img
 	@echo " [IMG]  $(target-dir)/$(target-name).img"
-	@$(BUILD) $(tools-dir)/nsih.bin $(target-dir)/$(target-name)_nonsih.img $(target-dir)/$(target-name).img
+	@$(BUILD) $(tools-dir)/nsih64.bin $(target-dir)/$(target-name)_nonsih.img $(target-dir)/$(target-name).img
 
 install:
 	@$(LOAD) $(target-dir)/$(target-name).img
