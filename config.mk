@@ -1,1 +1,1 @@
-BOARD			:=	NanoPi_M3
+BOARD			:=	NanoPC-T3
